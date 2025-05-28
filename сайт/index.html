@@ -1,174 +1,245 @@
-<!DOCTYPE html>
+
+ <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <title>THE BASIS</title>
-  <style>
-    /* Фоновая анимация плавного перелива */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 20px;
-      color: #e0e0e0;
-      background: linear-gradient(-45deg, #0f0f0f, #001f2f, #0f0f0f, #003344);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      min-height: 100vh;
-    }
-    @keyframes gradientBG {
-      0% {background-position:0% 50%;}
-      50% {background-position:100% 50%;}
-      100% {background-position:0% 50%;}
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Пример с фоном и градиентом</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    color: #e0e0e0;
+    background: url('https://i.postimg.cc/5tnmFtHY/5312047502410772421.jpg') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-    /* Заголовок */
-    .header-title {
-      text-align: center;
-      font-size: 40px;
-      font-weight: bold;
-      color: #0ff;
-      margin-bottom: 10px;
-      text-shadow: 0 0 15px #0ff;
-    }
-    .header-button {
-      display: block;
-      margin: 0 auto 30px auto;
-      padding: 10px 20px;
-      font-size: 16px;
-      font-weight: bold;
-      background: #0ff;
-      color: black;
-      border: none;
-      border-radius: 10px;
-      text-decoration: none;
-      text-align: center;
-      width: fit-content;
-      box-shadow: 0 0 12px #0ff;
-      transition: background-color 0.3s, box-shadow 0.3s;
-    }
-    .header-button:hover {
-      background-color: #00e0e0;
-      box-shadow: 0 0 20px #0ff;
-    }
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: linear-gradient(-45deg, rgba(15,15,15,0.6), rgba(0,31,47,0.6), rgba(0,51,68,0.6), rgba(15,15,15,0.6));
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    z-index: 0;
+    pointer-events: none;
+  }
 
-    /* Фильтрация кнопок */
-    .filter-buttons {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .filter-buttons button {
-      background-color: #0ff;
-      border: none;
-      border-radius: 8px;
-      color: black;
-      font-weight: bold;
-      padding: 10px 18px;
-      margin: 0 6px 12px 6px;
-      cursor: pointer;
-      box-shadow: 0 0 10px #0ff;
-      transition: background-color 0.3s, box-shadow 0.3s;
-      font-size: 16px;
-    }
-    .filter-buttons button:hover,
-    .filter-buttons button.active {
-      background-color: #00e0e0;
-      box-shadow: 0 0 20px #0ff;
-    }
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 
-    /* Карточки */
+  * {
+    transition: all 0.3s ease;
+  }
+
+  /* Заголовок */
+  .header-title {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #00f0ff, #00ffee, #00f0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 5s linear infinite;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes shine {
+    0% { background-position: 0%; }
+    100% { background-position: 200%; }
+  }
+
+  .header-button {
+    display: block;
+    margin: 0 auto 30px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background: #0ff;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+    width: fit-content;
+    box-shadow: inset 0 0 10px rgba(0,255,255,0.3), 0 0 12px #0ff;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-button:hover {
+    background-color: #00e0e0;
+    box-shadow: inset 0 0 12px rgba(0,255,255,0.4), 0 0 20px #0ff;
+  }
+
+  /* Фильтрация кнопок */
+  .filter-buttons {
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .filter-buttons button {
+    background-color: #0ff;
+    border: none;
+    border-radius: 8px;
+    color: black;
+    font-weight: bold;
+    padding: 10px 18px;
+    margin: 0 6px 12px 6px;
+    cursor: pointer;
+    box-shadow: inset 0 0 8px rgba(0,255,255,0.4), 0 0 10px #0ff;
+    font-size: 16px;
+  }
+
+  .filter-buttons button:hover,
+  .filter-buttons button.active {
+    background-color: #00e0e0;
+    box-shadow: inset 0 0 10px rgba(0,255,255,0.5), 0 0 20px #0ff;
+  }
+
+  /* Карточки */
+  .card {
+    background: #1a1a1a;
+    border: 1px solid #0ff;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0,255,255,0.15), 0 0 24px rgba(0,255,255,0.1);
+    padding: 16px;
+    margin: 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease forwards;
+    animation-delay: calc(var(--index, 0) * 0.1s);
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .info {
+    flex: 1;
+  }
+
+  .name {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 4px;
+    color: #0ff;
+    text-shadow: 0 0 6px #0ff;
+  }
+
+  .desc {
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 4px;
+  }
+
+  .owner {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 8px;
+  }
+
+  .operator-button {
+    padding: 6px 12px;
+    background-color: #0ff;
+    color: black;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: inset 0 0 8px rgba(0,255,255,0.3), 0 0 10px #0ff;
+  }
+
+  .operator-button:hover {
+    background-color: #00e0e0;
+    box-shadow: inset 0 0 10px rgba(0,255,255,0.4), 0 0 20px #0ff;
+  }
+
+  /* Скрытые элементы */
+  .hidden {
+    display: none;
+  }
+
+  /* Логотип в углу */
+  .logo {
+    position: fixed; /* фиксирует в углу */
+    top: 20px;
+    left: 20px; /* или right: 20px для правого угла */
+    z-index: 999; /* поверх всего */
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .logo img {
+    height: 40px; /* размер логотипа */
+    width: auto;
+    filter: drop-shadow(0 0 6px #0ff); /* неоновая подсветка */
+    transition: transform 0.3s ease;
+  }
+
+  .logo:hover img {
+    transform: scale(1.05);
+  }
+
+  /* Адаптация под мобильные устройства */
+  @media (max-width: 600px) {
     .card {
-      background: #1a1a1a;
-      border: 1px solid #0ff;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,255,255,0.2);
-      padding: 16px;
-      margin: 12px 0;
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 0.5s ease forwards;
-    }
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      flex-direction: column;
+      align-items: flex-start;
     }
     .card img {
-      width: 80px;
-      height: 80px;
-      border-radius: 8px;
-      object-fit: cover;
-    }
-    .info {
-      flex: 1;
-    }
-    .name {
-      font-weight: bold;
-      font-size: 18px;
-      margin-bottom: 4px;
-      color: #0ff;
-      text-shadow: 0 0 6px #0ff;
-    }
-    .desc {
-      font-size: 14px;
-      color: #ccc;
-      margin-bottom: 4px;
-    }
-    .owner {
-      font-size: 13px;
-      color: #888;
-      margin-bottom: 8px;
+      width: 100%;
+      height: auto;
     }
     .operator-button {
-      padding: 6px 12px;
-      background-color: #0ff;
-      color: black;
-      border: none;
-      border-radius: 6px;
-      text-decoration: none;
+      width: 100%;
+      text-align: center;
+    }
+    .filter-buttons button {
       font-size: 14px;
-      font-weight: bold;
-      box-shadow: 0 0 10px #0ff;
-      transition: background-color 0.3s, box-shadow 0.3s;
+      padding: 8px 14px;
+      margin: 0 4px 10px 4px;
     }
-    .operator-button:hover {
-      background-color: #00e0e0;
-      box-shadow: 0 0 20px #0ff;
-    }
+  }
+</style>
 
-    /* Скрытые элементы */
-    .hidden {
-      display: none;
-    }
-
-    /* Адаптация под мобильные устройства */
-    @media (max-width: 600px) {
-      .card {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .card img {
-        width: 100%;
-        height: auto;
-      }
-      .operator-button {
-        width: 100%;
-        text-align: center;
-      }
-      .filter-buttons button {
-        font-size: 14px;
-        padding: 8px 14px;
-        margin: 0 4px 10px 4px;
-      }
-    }
-  </style>
 </head>
 <body>
-  <div class="header-title">THE BASIS</div>
+  <div class="header-title">𝕋𝕙𝕖 𝔹𝕒𝕤𝕚𝕤 𝔓𝕄ℝ</div>
   <a class="header-button" href="https://t.me/+xQboXbJrRjNkZWZi" target="_blank">ШАПКА ТУТ</a>
+  <a href="/" class="logo">
+  <img src="https://i.postimg.cc/k4L4fDfh/Chat-GPT-Image-27-2025-13-24-15.png" alt="Логотип">
+</a>
 
   <div class="filter-buttons">
     <button class="active" data-filter="all">Все</button>
@@ -274,33 +345,48 @@
   </div>
 
   <script>
-    // Фильтрация по категориям
-    const filterButtons = document.querySelectorAll('.filter-buttons button');
-    const itemsContainer = document.getElementById('items-container');
+  // Фильтрация по категориям
+  const filterButtons = document.querySelectorAll('.filter-buttons button');
+  const itemsContainer = document.getElementById('items-container');
 
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        // Убираем активный класс у всех кнопок
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        // Добавляем активный класс на нажатую
-        button.classList.add('active');
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Убираем активный класс у всех кнопок
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      // Добавляем активный класс на нажатую
+      button.classList.add('active');
 
-        const filter = button.getAttribute('data-filter');
-        const cards = itemsContainer.querySelectorAll('.card');
+      const filter = button.getAttribute('data-filter');
+      const cards = itemsContainer.querySelectorAll('.card');
 
-        cards.forEach(card => {
-          if (filter === 'all') {
-            card.classList.remove('hidden');
-          } else if (filter === 'shops' && card.classList.contains('category-shops')) {
-            card.classList.remove('hidden');
-          } else if (filter === 'exchangers' && card.classList.contains('category-exchangers')) {
-            card.classList.remove('hidden');
-          } else {
-            card.classList.add('hidden');
-          }
-        });
+      cards.forEach(card => {
+        if (filter === 'all') {
+          card.classList.remove('hidden');
+        } else if (filter === 'shops' && card.classList.contains('category-shops')) {
+          card.classList.remove('hidden');
+        } else if (filter === 'exchangers' && card.classList.contains('category-exchangers')) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      // Обновляем задержку анимации только для видимых карточек
+      let visibleIndex = 0;
+      cards.forEach(card => {
+        if (!card.classList.contains('hidden')) {
+          card.style.setProperty('--index', visibleIndex++);
+        }
       });
     });
-  </script>
+  });
+
+  // Установка индекса для анимации при загрузке
+  const allCards = itemsContainer.querySelectorAll('.card');
+  allCards.forEach((card, index) => {
+    card.style.setProperty('--index', index);
+  });
+</script>
+
 </body>
 </html>
